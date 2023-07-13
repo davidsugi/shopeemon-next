@@ -1,27 +1,22 @@
+'use client';
 // /src/app/page.js
 export const dynamic = "force-dynamic";
 
-import React from 'react';
-import {
-  readFile,
-  writeFile,
-} from './helpers';
+import React, { useEffect, useState } from 'react';
 
 const DATABASE_PATH = 'src/app/counter/database.json';
 
 function Counter() {
-  let { hits } = JSON.parse(
-    readFile(DATABASE_PATH)
-  );
+  const [hits,setHits]=useState(null)
 
-  hits += 1;
+  useEffect(()=>{
+    let cachhit = window.localStorage.getItem("hits") || 0;
+    cachhit=Number(cachhit)+1;
+    setHits(cachhit);
+    window.localStorage.setItem("hits",cachhit);
+  },[])
 
-  writeFile(
-    DATABASE_PATH,
-    JSON.stringify({ hits })
-  );
-
-  return hits;
+  return hits ? hits : "-";
 }
 
 export default Counter;

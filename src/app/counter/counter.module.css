@@ -1,0 +1,8 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+.censored {
+  filter: blur(4px);
+}
